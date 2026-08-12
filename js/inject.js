@@ -87,7 +87,8 @@ function inject (loadBeta = false, extUrl = chrome.runtime.getURL(''), betaDate=
 		}, {capture: false, once: true, passive: true});
 	});
 	
-	const v = chrome.runtime.getManifest().version + (loadBeta ? '-beta-'+ betaDate:'');
+	const manifest = chrome.runtime.getManifest();
+	const v = (manifest.version_name || manifest.version) + (loadBeta ? '-beta-'+ betaDate:'');
 
 	let   lng = chrome.i18n.getUILanguage();
 	const uLng = localStorage.getItem('user-language');
